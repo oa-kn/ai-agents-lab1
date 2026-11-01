@@ -1,0 +1,208 @@
+{
+  "base_url": "http://127.0.0.1:8011",
+  "live_url": "http://127.0.0.1:8012",
+  "rows": [
+    {
+      "scenario": "initial_list",
+      "criterion": "AC1",
+      "source": "не застосовується",
+      "expected_http": 200,
+      "status": "passed",
+      "actual_http": 200,
+      "before": 0,
+      "after": 0,
+      "records": []
+    },
+    {
+      "scenario": "manual",
+      "criterion": "AC1",
+      "source": "не застосовується",
+      "expected_http": 201,
+      "status": "passed",
+      "actual_http": 201,
+      "response": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15,
+        "id": "e4edfeec-18e3-4cb7-b467-45fccfe244e0"
+      },
+      "before": 0,
+      "after": 1
+    },
+    {
+      "scenario": "manual_invalid",
+      "criterion": "AC1",
+      "source": "не застосовується",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": [
+          {
+            "type": "greater_than",
+            "loc": [
+              "body",
+              "duration_minutes"
+            ],
+            "msg": "Input should be greater than 0",
+            "input": -5,
+            "ctx": {
+              "gt": 0
+            }
+          }
+        ]
+      },
+      "before": 1,
+      "after": 1
+    },
+    {
+      "scenario": "ai_valid",
+      "criterion": "AC2",
+      "source": "підготовлена відповідь",
+      "expected_http": 201,
+      "status": "passed",
+      "actual_http": 201,
+      "response": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15,
+        "id": "c3134686-1e2f-4578-94a8-babf72f8d2d6"
+      },
+      "before": 1,
+      "after": 2
+    },
+    {
+      "scenario": "incomplete",
+      "criterion": "AC3",
+      "source": "не застосовується",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "needs_clarification",
+          "reason": "Вкажіть: Відео НАЗВА, тема ТЕМА, тривалість N хвилин (1–1440)."
+        }
+      },
+      "before": 2,
+      "after": 2
+    },
+    {
+      "scenario": "ambiguous",
+      "criterion": "AC3",
+      "source": "не застосовується",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "needs_clarification",
+          "reason": "Вкажіть: Відео НАЗВА, тема ТЕМА, тривалість N хвилин (1–1440)."
+        }
+      },
+      "before": 2,
+      "after": 2
+    },
+    {
+      "scenario": "ai_null",
+      "criterion": "AC3",
+      "source": "підготовлена відповідь",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "needs_clarification",
+          "reason": "Модель не визначила всі обов’язкові поля."
+        }
+      },
+      "before": 2,
+      "after": 2
+    },
+    {
+      "scenario": "invalid_proposal",
+      "criterion": "AC4",
+      "source": "підготовлена відповідь",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "invalid_proposal",
+          "reason": "Пропозиція не відповідає схемі відео."
+        }
+      },
+      "before": 2,
+      "after": 2
+    },
+    {
+      "scenario": "semantic_mismatch",
+      "criterion": "AC4",
+      "source": "підготовлена відповідь",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "semantic_mismatch",
+          "reason": "Поля моделі суперечать явно вказаним даним повідомлення."
+        }
+      },
+      "before": 2,
+      "after": 2
+    },
+    {
+      "scenario": "model_down",
+      "criterion": "AC5",
+      "source": "імітований збій",
+      "expected_http": 503,
+      "status": "passed",
+      "actual_http": 503,
+      "response": {
+        "detail": {
+          "status": "model_unavailable",
+          "reason": "Модель недоступна. Додайте відео вручну або повторіть пізніше."
+        }
+      },
+      "before": 2,
+      "after": 2
+    },
+    {
+      "scenario": "manual_after_failure",
+      "criterion": "AC5",
+      "source": "не застосовується",
+      "expected_http": 201,
+      "status": "passed",
+      "actual_http": 201,
+      "response": {
+        "title": "Після збою",
+        "topic": "цикли",
+        "duration_minutes": 15,
+        "id": "ceaa43fd-8354-48fb-8d4c-54ffc5aec8ec"
+      },
+      "before": 2,
+      "after": 3
+    },
+    {
+      "scenario": "live_ai",
+      "criterion": "AC2",
+      "source": "реальна модель",
+      "expected_http": 201,
+      "status": "passed",
+      "actual_http": 201,
+      "response": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15,
+        "id": "6873cadf-3584-42b9-8cfb-78bcb966bd5c"
+      },
+      "before": 0,
+      "after": 1
+    }
+  ],
+  "summary": {
+    "passed": 12,
+    "failed": 0,
+    "not_run": 0
+  }
+}

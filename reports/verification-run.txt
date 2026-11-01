@@ -1,0 +1,16 @@
+C:\Users\crmpm\PycharmProjects\ai-agents-lab1-git\scripts\verify.py:14: DeprecationWarning: 'asyncio.WindowsSelectorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+C:\Users\crmpm\PycharmProjects\ai-agents-lab1-git\scripts\verify.py:14: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+fixture server ready on 8011
+live server ready on 8012
+Executing 02_api_verification.ipynb
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Saved executed 02_api_verification.ipynb
+Executing 02_api_verification.ipynb
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Saved executed 02_api_verification.ipynb
+Both HTTP passes completed. Test processes will stop; memory data discarded.
+Verification finished; all test processes stopped.
+
+Runner return code: 0

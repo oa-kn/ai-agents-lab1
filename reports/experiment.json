@@ -1,0 +1,280 @@
+{
+  "cases": [
+    {
+      "case": "normal",
+      "expected": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15
+      },
+      "rules": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15
+      },
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": "Відео Python",
+          "topic": "цикли",
+          "duration_minutes": 15
+        }
+      },
+      "B": {
+        "status": "passed",
+        "value": {
+          "title": "Python",
+          "topic": "цикли",
+          "duration_minutes": 15
+        }
+      }
+    },
+    {
+      "case": "lesson",
+      "expected": {
+        "title": "HTML",
+        "topic": "форми",
+        "duration_minutes": 20
+      },
+      "rules": {
+        "title": "HTML",
+        "topic": "форми",
+        "duration_minutes": 20
+      },
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": "Урок HTML",
+          "topic": "тема форми",
+          "duration_minutes": 20
+        }
+      },
+      "B": {
+        "status": "passed",
+        "value": {
+          "title": "HTML",
+          "topic": "форми",
+          "duration_minutes": 20
+        }
+      }
+    },
+    {
+      "case": "label",
+      "expected": {
+        "title": "SQL",
+        "topic": "бази даних",
+        "duration_minutes": 30
+      },
+      "rules": {
+        "title": "SQL",
+        "topic": "бази даних",
+        "duration_minutes": 30
+      },
+      "rules_status": "passed",
+      "A": {
+        "status": "passed",
+        "value": {
+          "title": "SQL",
+          "topic": "бази даних",
+          "duration_minutes": 30
+        }
+      },
+      "B": {
+        "status": "passed",
+        "value": {
+          "title": "SQL",
+          "topic": "бази даних",
+          "duration_minutes": 30
+        }
+      }
+    },
+    {
+      "case": "spaces",
+      "expected": {
+        "title": "CSS",
+        "topic": "стилі",
+        "duration_minutes": 10
+      },
+      "rules": {
+        "title": "CSS",
+        "topic": "стилі",
+        "duration_minutes": 10
+      },
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": "Відео CSS",
+          "topic": "стилі",
+          "duration_minutes": 10
+        }
+      },
+      "B": {
+        "status": "passed",
+        "value": {
+          "title": "CSS",
+          "topic": "стилі",
+          "duration_minutes": 10
+        }
+      }
+    },
+    {
+      "case": "case",
+      "expected": {
+        "title": "Git",
+        "topic": "гілки",
+        "duration_minutes": 12
+      },
+      "rules": {
+        "title": "Git",
+        "topic": "гілки",
+        "duration_minutes": 12
+      },
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": "відео Git",
+          "topic": "ТЕМА гілки",
+          "duration_minutes": 12
+        }
+      },
+      "B": {
+        "status": "failed",
+        "reason": "invalid JSON",
+        "raw": ""
+      }
+    },
+    {
+      "case": "missing_duration",
+      "expected": null,
+      "rules": null,
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": "Відео Python",
+          "topic": "тема цикли",
+          "duration_minutes": null
+        }
+      },
+      "B": {
+        "status": "failed",
+        "reason": "invalid JSON",
+        "raw": "```json\n{\n  \"title\": \"Python\",\n  \"topic\": \"цикли\",\n  \"duration_minutes\": null\n}\n```"
+      }
+    },
+    {
+      "case": "ambiguous",
+      "expected": null,
+      "rules": null,
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": null,
+          "topic": "цикли",
+          "duration_minutes": null
+        }
+      },
+      "B": {
+        "status": "failed",
+        "value": {
+          "title": "Python",
+          "topic": "цикли",
+          "duration_minutes": null
+        }
+      }
+    },
+    {
+      "case": "zero",
+      "expected": null,
+      "rules": null,
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": "Відео Python",
+          "topic": "тема цикли",
+          "duration_minutes": null
+        }
+      },
+      "B": {
+        "status": "failed",
+        "value": {
+          "title": "Python",
+          "topic": "цикли",
+          "duration_minutes": null
+        }
+      }
+    },
+    {
+      "case": "missing_topic",
+      "expected": null,
+      "rules": null,
+      "rules_status": "passed",
+      "A": {
+        "status": "failed",
+        "value": {
+          "title": "Відео Python",
+          "topic": null,
+          "duration_minutes": 15
+        }
+      },
+      "B": {
+        "status": "failed",
+        "value": {
+          "title": "Python",
+          "topic": null,
+          "duration_minutes": 15
+        }
+      }
+    },
+    {
+      "case": "paraphrase",
+      "expected": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15
+      },
+      "rules": null,
+      "rules_status": "failed",
+      "A": {
+        "status": "passed",
+        "value": {
+          "title": "Python",
+          "topic": "цикли",
+          "duration_minutes": 15
+        }
+      },
+      "B": {
+        "status": "passed",
+        "value": {
+          "title": "Python",
+          "topic": "цикли",
+          "duration_minutes": 15
+        }
+      }
+    }
+  ],
+  "summary": {
+    "rules": {
+      "passed": 9,
+      "failed": 1
+    },
+    "A": {
+      "passed": 2,
+      "failed": 8,
+      "not_run": 0
+    },
+    "B": {
+      "passed": 5,
+      "failed": 5,
+      "not_run": 0
+    }
+  },
+  "contract_checks": 10,
+  "model": "openai/gpt-oss-20b"
+}
