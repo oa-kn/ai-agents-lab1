@@ -1,5 +1,20 @@
 """Conservative, explicit-text contract; no model or storage dependencies."""
 import re
+
+def free_duration(text):
+    if re.search(r'\d+\s*(?:або|чи|[-–/])\s*\d+', text):
+        return None
+    values = re.findall(r'(?<![\w.])(-?\d+)\s*(?:хвилин(?:а|и)?|хв)(?!\w)', text, re.I)
+    if len(values) != 1 or not 1 <= int(values[0]) <= 1440:
+        return None
+    return int(values[0])
+
+def grounded(fields, text, duration):
+    normalize = lambda s: ' '.join(s.casefold().split())
+    source = normalize(text)
+    return (fields.duration_minutes == duration and
+            all(re.search(r'(?<!\w)' + re.escape(normalize(value)) + r'(?!\w)', source)
+                for value in (fields.title, fields.topic)))
 from pydantic import BaseModel, ConfigDict, Field
 
 class VideoFields(BaseModel):

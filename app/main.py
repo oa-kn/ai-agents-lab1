@@ -2,7 +2,7 @@ import json
 from uuid import uuid4
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
-from app.contract import VideoFields, explicit_fields
+from app.contract import VideoFields, explicit_fields, free_duration, grounded
 from app.ai import extract_video, ModelUnavailable
 
 app = FastAPI(title="AI Agents Lab 1 — Educational Videos", version="1.0")
@@ -36,8 +36,9 @@ def get_videos():
                      503:{'description':'Модель недоступна; скористайтеся ручним створенням'}})
 def create_video_ai(data: VideoText):
     expected = explicit_fields(data.text)
-    if expected is None:
-        reject('needs_clarification', 'Вкажіть: Відео НАЗВА, тема ТЕМА, тривалість N хвилин (1–1440).')
+    duration = free_duration(data.text)
+    if expected is None and duration is None:
+        reject('needs_clarification', 'Вкажіть назву, тему та одну тривалість цифрами у хвилинах (1–1440).')
     try:
         proposal = extract_video(data.text)
     except (ModelUnavailable, TimeoutError):
@@ -53,6 +54,6 @@ def create_video_ai(data: VideoText):
         fields = VideoFields.model_validate(proposal)
     except ValidationError:
         reject('invalid_proposal', 'Пропозиція не відповідає схемі відео.')
-    if fields.model_dump() != expected:
+    if (expected is not None and fields.model_dump() != expected) or (expected is None and not grounded(fields, data.text, duration)):
         reject('semantic_mismatch', 'Поля моделі суперечать явно вказаним даним повідомлення.')
     return save(fields)

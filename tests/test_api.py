@@ -7,6 +7,18 @@ from app.main import app, videos
 from app.ai import ModelUnavailable
 
 FIELDS = {'title':'Python', 'topic':'цикли', 'duration_minutes':15}
+FREE_TEXT = 'Додай, будь ласка, відео з назвою Python. У ньому розглядаються цикли, а весь урок триває 15 хвилин.'
+
+def test_free_text(client):
+    with patch('app.main.extract_video', return_value=FIELDS):
+        response = client.post('/videos/ai', json={'text': FREE_TEXT})
+    assert response.status_code == 201
+    assert client.get('/videos').json() == [response.json()]
+
+@pytest.mark.parametrize('change', [{'title':'Java'}, {'topic':'масиви'}, {'duration_minutes':21}])
+def test_free_text_hallucination(client, change):
+    with patch('app.main.extract_video', return_value={**FIELDS, **change}):
+        unchanged_failure(client, FREE_TEXT, status='semantic_mismatch')
 TEXT = 'Відео Python, тема цикли, тривалість 15 хвилин'
 
 @pytest.fixture(autouse=True)
