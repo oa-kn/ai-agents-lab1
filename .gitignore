@@ -5,3 +5,7 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 .idea/
+.verification-runtime/
+.venv/
+.pytest_cache/
+__pycache__/
