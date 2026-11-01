@@ -24,7 +24,7 @@
         "title": "Python",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "e4edfeec-18e3-4cb7-b467-45fccfe244e0"
+        "id": "efca73d5-972c-4ef4-8b7c-f57058f9ba83"
       },
       "before": 0,
       "after": 1
@@ -66,7 +66,7 @@
         "title": "Python",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "c3134686-1e2f-4578-94a8-babf72f8d2d6"
+        "id": "8b207df3-5b05-4476-8701-90bc734a09e5"
       },
       "before": 1,
       "after": 2
@@ -81,7 +81,7 @@
       "response": {
         "detail": {
           "status": "needs_clarification",
-          "reason": "Вкажіть: Відео НАЗВА, тема ТЕМА, тривалість N хвилин (1–1440)."
+          "reason": "Вкажіть назву, тему та одну тривалість цифрами у хвилинах (1–1440)."
         }
       },
       "before": 2,
@@ -97,7 +97,7 @@
       "response": {
         "detail": {
           "status": "needs_clarification",
-          "reason": "Вкажіть: Відео НАЗВА, тема ТЕМА, тривалість N хвилин (1–1440)."
+          "reason": "Вкажіть назву, тему та одну тривалість цифрами у хвилинах (1–1440)."
         }
       },
       "before": 2,
@@ -178,10 +178,58 @@
         "title": "Після збою",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "ceaa43fd-8354-48fb-8d4c-54ffc5aec8ec"
+        "id": "24197f03-5df1-4f90-b508-a9a55f21dd6d"
       },
       "before": 2,
       "after": 3
+    },
+    {
+      "scenario": "free_text_valid",
+      "criterion": "AC2",
+      "source": "підготовлена відповідь",
+      "expected_http": 201,
+      "status": "passed",
+      "actual_http": 201,
+      "response": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15,
+        "id": "c3350f1e-5e69-47fc-8457-a14918d17e32"
+      },
+      "before": 3,
+      "after": 4
+    },
+    {
+      "scenario": "free_text_wrong",
+      "criterion": "AC4",
+      "source": "підготовлена відповідь",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "semantic_mismatch",
+          "reason": "Поля моделі суперечать явно вказаним даним повідомлення."
+        }
+      },
+      "before": 4,
+      "after": 4
+    },
+    {
+      "scenario": "free_text_range",
+      "criterion": "AC3",
+      "source": "не застосовується",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "needs_clarification",
+          "reason": "Вкажіть назву, тему та одну тривалість цифрами у хвилинах (1–1440)."
+        }
+      },
+      "before": 4,
+      "after": 4
     },
     {
       "scenario": "live_ai",
@@ -194,15 +242,32 @@
         "title": "Python",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "6873cadf-3584-42b9-8cfb-78bcb966bd5c"
+        "id": "bdbcf4d6-bc91-4a10-9edb-72c984fa21d4"
       },
       "before": 0,
       "after": 1
+    },
+    {
+      "scenario": "live_free_text",
+      "criterion": "AC2",
+      "source": "реальна модель",
+      "expected_http": 201,
+      "status": "failed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "invalid_proposal",
+          "reason": "Пропозиція не відповідає схемі відео."
+        }
+      },
+      "before": 1,
+      "after": 1,
+      "reason": "AssertionError: HTTP 422 != 201"
     }
   ],
   "summary": {
-    "passed": 12,
-    "failed": 0,
+    "passed": 15,
+    "failed": 1,
     "not_run": 0
   }
 }

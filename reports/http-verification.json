@@ -9,26 +9,32 @@
       "expected_http": 200,
       "status": "passed",
       "actual_http": 200,
-      "before": 3,
-      "after": 3,
+      "before": 4,
+      "after": 4,
       "records": [
         {
           "title": "Python",
           "topic": "цикли",
           "duration_minutes": 15,
-          "id": "e4edfeec-18e3-4cb7-b467-45fccfe244e0"
+          "id": "efca73d5-972c-4ef4-8b7c-f57058f9ba83"
         },
         {
           "title": "Python",
           "topic": "цикли",
           "duration_minutes": 15,
-          "id": "c3134686-1e2f-4578-94a8-babf72f8d2d6"
+          "id": "8b207df3-5b05-4476-8701-90bc734a09e5"
         },
         {
           "title": "Після збою",
           "topic": "цикли",
           "duration_minutes": 15,
-          "id": "ceaa43fd-8354-48fb-8d4c-54ffc5aec8ec"
+          "id": "24197f03-5df1-4f90-b508-a9a55f21dd6d"
+        },
+        {
+          "title": "Python",
+          "topic": "цикли",
+          "duration_minutes": 15,
+          "id": "c3350f1e-5e69-47fc-8457-a14918d17e32"
         }
       ]
     },
@@ -43,10 +49,10 @@
         "title": "Python",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "7fe1add8-2f42-4ce2-ae39-a7250c9eb3ee"
+        "id": "5f79e367-0e0d-4cdf-95a5-1dfae2c9dafa"
       },
-      "before": 3,
-      "after": 4
+      "before": 4,
+      "after": 5
     },
     {
       "scenario": "manual_invalid",
@@ -71,8 +77,8 @@
           }
         ]
       },
-      "before": 4,
-      "after": 4
+      "before": 5,
+      "after": 5
     },
     {
       "scenario": "ai_valid",
@@ -85,10 +91,10 @@
         "title": "Python",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "ca61ae91-2fd5-4f78-9b65-c5f1def8302b"
+        "id": "4ac1ed9c-c047-41ef-8d5d-91751f0ced72"
       },
-      "before": 4,
-      "after": 5
+      "before": 5,
+      "after": 6
     },
     {
       "scenario": "incomplete",
@@ -100,11 +106,11 @@
       "response": {
         "detail": {
           "status": "needs_clarification",
-          "reason": "Вкажіть: Відео НАЗВА, тема ТЕМА, тривалість N хвилин (1–1440)."
+          "reason": "Вкажіть назву, тему та одну тривалість цифрами у хвилинах (1–1440)."
         }
       },
-      "before": 5,
-      "after": 5
+      "before": 6,
+      "after": 6
     },
     {
       "scenario": "ambiguous",
@@ -116,11 +122,11 @@
       "response": {
         "detail": {
           "status": "needs_clarification",
-          "reason": "Вкажіть: Відео НАЗВА, тема ТЕМА, тривалість N хвилин (1–1440)."
+          "reason": "Вкажіть назву, тему та одну тривалість цифрами у хвилинах (1–1440)."
         }
       },
-      "before": 5,
-      "after": 5
+      "before": 6,
+      "after": 6
     },
     {
       "scenario": "ai_null",
@@ -135,8 +141,8 @@
           "reason": "Модель не визначила всі обов’язкові поля."
         }
       },
-      "before": 5,
-      "after": 5
+      "before": 6,
+      "after": 6
     },
     {
       "scenario": "invalid_proposal",
@@ -151,8 +157,8 @@
           "reason": "Пропозиція не відповідає схемі відео."
         }
       },
-      "before": 5,
-      "after": 5
+      "before": 6,
+      "after": 6
     },
     {
       "scenario": "semantic_mismatch",
@@ -167,8 +173,8 @@
           "reason": "Поля моделі суперечать явно вказаним даним повідомлення."
         }
       },
-      "before": 5,
-      "after": 5
+      "before": 6,
+      "after": 6
     },
     {
       "scenario": "model_down",
@@ -183,8 +189,8 @@
           "reason": "Модель недоступна. Додайте відео вручну або повторіть пізніше."
         }
       },
-      "before": 5,
-      "after": 5
+      "before": 6,
+      "after": 6
     },
     {
       "scenario": "manual_after_failure",
@@ -197,10 +203,58 @@
         "title": "Після збою",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "2214844a-3671-4892-8218-59cd86998b2a"
+        "id": "bfcfecf9-d863-4a5b-b4e7-096ad0b62fac"
       },
-      "before": 5,
-      "after": 6
+      "before": 6,
+      "after": 7
+    },
+    {
+      "scenario": "free_text_valid",
+      "criterion": "AC2",
+      "source": "підготовлена відповідь",
+      "expected_http": 201,
+      "status": "passed",
+      "actual_http": 201,
+      "response": {
+        "title": "Python",
+        "topic": "цикли",
+        "duration_minutes": 15,
+        "id": "d4fa9be8-e6b7-4ece-9561-7f32f7859d4d"
+      },
+      "before": 7,
+      "after": 8
+    },
+    {
+      "scenario": "free_text_wrong",
+      "criterion": "AC4",
+      "source": "підготовлена відповідь",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "semantic_mismatch",
+          "reason": "Поля моделі суперечать явно вказаним даним повідомлення."
+        }
+      },
+      "before": 8,
+      "after": 8
+    },
+    {
+      "scenario": "free_text_range",
+      "criterion": "AC3",
+      "source": "не застосовується",
+      "expected_http": 422,
+      "status": "passed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "needs_clarification",
+          "reason": "Вкажіть назву, тему та одну тривалість цифрами у хвилинах (1–1440)."
+        }
+      },
+      "before": 8,
+      "after": 8
     },
     {
       "scenario": "live_ai",
@@ -213,15 +267,32 @@
         "title": "Python",
         "topic": "цикли",
         "duration_minutes": 15,
-        "id": "594a42e6-49f1-455b-ab7b-9c10afed0e14"
+        "id": "4ab9b1b9-e9e2-4c10-8b05-777d862d4c08"
       },
       "before": 1,
       "after": 2
+    },
+    {
+      "scenario": "live_free_text",
+      "criterion": "AC2",
+      "source": "реальна модель",
+      "expected_http": 201,
+      "status": "failed",
+      "actual_http": 422,
+      "response": {
+        "detail": {
+          "status": "invalid_proposal",
+          "reason": "Пропозиція не відповідає схемі відео."
+        }
+      },
+      "before": 2,
+      "after": 2,
+      "reason": "AssertionError: HTTP 422 != 201"
     }
   ],
   "summary": {
-    "passed": 12,
-    "failed": 0,
+    "passed": 15,
+    "failed": 1,
     "not_run": 0
   }
 }

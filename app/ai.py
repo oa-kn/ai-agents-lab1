@@ -25,6 +25,10 @@ PROMPT = """Витягни назву, тему і тривалість навч
 def extract_video(text):
     mode = os.getenv('AI_MODE', 'live')
     if mode == 'fixture':
+        if text == 'Додай відео з назвою Python про цикли тривалістю 15 хвилин.':
+            return {'title': 'Python', 'topic': 'цикли', 'duration_minutes': 15}
+        if text == 'Прошу додати відео з назвою Python про цикли тривалістю 15 хвилин.':
+            return {'title': 'Java', 'topic': 'цикли', 'duration_minutes': 15}
         data = explicit_fields(text)
         title = data['title'] if data else ''
         if title == 'FixtureDown':

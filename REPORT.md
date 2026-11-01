@@ -46,3 +46,45 @@ Codex допоміг уточнити вимоги, реалізувати ко�
 |HTTP повторний прохід|12 passed, 0 failed, 0 not_run|reports/http-repeat-pass.json|
 
 11 HTTP-сценаріїв детерміновані; 12-й — реальний Groq через API. Повторний fixture-прохід починається з трьох наявних записів і завершується шістьма, live — з одного до двох. Усі відмови порівнюють також повний вміст. Результати A/B навмисно не названі успішними контрактними тестами; вони демонструють межі моделі.
+
+## Остаточна перевірка після розширення вільного тексту
+
+36 тестів pytest пройшли. Нижче актуальні HTTP-результати; попередня таблиця вище є історичним результатом до розширення.
+
+Прохід 1: {'passed': 15, 'failed': 1, 'not_run': 0}
+- initial_list: passed, HTTP 200.
+- manual: passed, HTTP 201.
+- manual_invalid: passed, HTTP 422.
+- ai_valid: passed, HTTP 201.
+- incomplete: passed, HTTP 422.
+- ambiguous: passed, HTTP 422.
+- ai_null: passed, HTTP 422.
+- invalid_proposal: passed, HTTP 422.
+- semantic_mismatch: passed, HTTP 422.
+- model_down: passed, HTTP 503.
+- manual_after_failure: passed, HTTP 201.
+- free_text_valid: passed, HTTP 201.
+- free_text_wrong: passed, HTTP 422.
+- free_text_range: passed, HTTP 422.
+- live_ai: passed, HTTP 201.
+- live_free_text: failed, HTTP 422.
+
+Прохід 2: {'passed': 15, 'failed': 1, 'not_run': 0}
+- initial_list: passed, HTTP 200.
+- manual: passed, HTTP 201.
+- manual_invalid: passed, HTTP 422.
+- ai_valid: passed, HTTP 201.
+- incomplete: passed, HTTP 422.
+- ambiguous: passed, HTTP 422.
+- ai_null: passed, HTTP 422.
+- invalid_proposal: passed, HTTP 422.
+- semantic_mismatch: passed, HTTP 422.
+- model_down: passed, HTTP 503.
+- manual_after_failure: passed, HTTP 201.
+- free_text_valid: passed, HTTP 201.
+- free_text_wrong: passed, HTTP 422.
+- free_text_range: passed, HTTP 422.
+- live_ai: passed, HTTP 201.
+- live_free_text: failed, HTTP 422.
+
+Початкове речення про куплену машину у видимій демонстрації дало422 invalid_proposal (неправильний JSON моделі); уточнене речення з явною назвою Огляд машини, темою тест-драйв та20 хвилинами дало201. Це спостереження демонстрації, не автоматичний тест. Не стверджуємо, що модель розуміє будь-який текст. Вільний ввід перевіряє одну тривалість цифрами у хвилинах і дослівну опору назви/теми на текст. Це не гарантує правильного вибору ролей. Нові HTTP-сценарії free_text_valid/ wrong/ range відповідають AC2/AC4/AC3; unit tests test_free_text, test_free_text_hallucination.
